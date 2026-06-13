@@ -25,4 +25,4 @@ Backtest period: 2020-01-01 – 2025-12-31
 
 `sp500_lump.py` - Has a similar structure to _sp500_dca.py_, but instead of XIRR it calculates the CAGR using the standard formula.
 
-`comparison.py` - Combines the data from both strategies and visualizes them on a single graph.
+`comparison.py` - Combines the data from both strategies and visualizes it on a single graph.
