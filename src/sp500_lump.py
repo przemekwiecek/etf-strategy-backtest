@@ -1,7 +1,7 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 from inflation import get_inflation_data
 from etf_data import get_market_data
+from plotting import build_plots
 
 def build_sp_lump():
     sp_lump, years = get_market_data("VUAA.L")
@@ -29,35 +29,8 @@ def build_sp_lump():
 
 if __name__ == "__main__":
     sp_lump, cagr, real_cagr = build_sp_lump()
-    plt.style.use('ggplot')
-    ax = sp_lump.plot(kind="line", y="money_invested_total", x="date", figsize=(10, 5))
-    sp_lump.plot(kind="line", y="portfolio_value", ax=ax)
-    sp_lump.plot(kind="line", y="real_portfolio_value", ax=ax)
-    plt.title("Portfolio Value vs Money Invested")
-    plt.text(62, 6500, f"CAGR: {cagr}%")
-    plt.text(62, 6050, f"Real CAGR: {real_cagr}%")
-    plt.legend(["Money Invested", "Portfolio Value", "Real Portfolio Value"])
-    plt.tight_layout()
 
-    sp_lump.plot(kind="line", y="profit", x="date", figsize=(10, 5))
-    plt.title("Profit over time")
-    plt.style.use('ggplot')
-    plt.legend(["Profit"])
-    plt.tight_layout()
-
-    sp_lump.plot(kind="line", y="units_total", x="date", figsize=(10, 5))
-    plt.title("Total number of units over time")
-    plt.style.use('ggplot')
-    plt.legend(["Total Units"])
-    plt.tight_layout()
-
-    sp_lump.plot(kind="line", y="close", x="date", figsize=(10, 5))
-    plt.title("VUAA.L ETF Value")
-    plt.style.use('ggplot')
-    plt.legend(["Closing Price"])
-    plt.tight_layout()
-
-    plt.show()
+    build_plots(sp_lump, "lump", cagr, real_cagr)
 
 
 
