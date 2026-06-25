@@ -21,8 +21,10 @@ Backtest period: 2020-01-01 – 2025-12-31
 
 `inflation.py` - Reads the _CPIAUCSL.csv_ file containing inflation data and formats it properly.
 
-`sp500_dca.py` - Uses the data from _market_data.py_, adds columns and calculates values to backtest the DCA strategy. The main dataframe is merged with data from _inflation.py_ to calculate real (inflation-adjusted) values. It uses the pyxirr library to compute the XIRR indicator. At the end, it visualizes the data using Matplotlib.
+`sp500_dca.py` - Uses the data from _market_data.py_, adds columns and calculates values to backtest the DCA strategy. The main dataframe is merged with data from _inflation.py_ to calculate real (inflation-adjusted) values. It uses the pyxirr library to compute the XIRR indicator. 
 
 `sp500_lump.py` - Has a similar structure to _sp500_dca.py_, but instead of XIRR it calculates the CAGR using the standard formula.
+
+`plotting.py` - Using Matplotlib library, the script visualises the output on 4 different graphs.
 
 `comparison.py` - Combines the data from both strategies and visualizes it on a single graph.
