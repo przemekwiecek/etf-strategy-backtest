@@ -13,8 +13,9 @@ def build_sp_dca():
     sp_dca["units_total"] = sp_dca["units_bought"].cumsum()
     sp_dca["portfolio_value"] = sp_dca["units_total"] * sp_dca["close"]
     sp_dca["profit"] = sp_dca["portfolio_value"] - sp_dca["money_invested_total"]
+    sp_dca["date"] = pd.to_datetime(sp_dca["date"])
 
-    dates = pd.to_datetime(sp_dca["date"])
+    dates = sp_dca["date"]
     dates.iloc[-1] = pd.to_datetime("2025-12-31", format="%Y-%m-%d")
 
     cashflow_nominal = (sp_dca["money_invested"] * (-1)).astype(float)
@@ -23,9 +24,7 @@ def build_sp_dca():
 
     cpi = get_inflation_data()
 
-    sp_dca["date"] = pd.to_datetime(sp_dca["date"])
     sp_dca = pd.merge_asof(sp_dca, cpi, left_on="date", right_on="observation_date", direction="nearest")
-    sp_dca["date"] = sp_dca["date"].dt.year.astype(str) + "-" + sp_dca["date"].dt.month.astype(str)
     sp_dca = sp_dca.drop(columns=["observation_date", "CPIAUCSL"])
     sp_dca["real_portfolio_value"] = sp_dca["portfolio_value"] / sp_dca["inflation_factor"]
 
