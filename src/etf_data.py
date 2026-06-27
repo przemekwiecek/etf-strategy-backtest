@@ -1,6 +1,7 @@
+import pandas as pd
 import yfinance as yf
 
-def get_market_data(ticker):
+def get_market_data(ticker: str) -> tuple[pd.DataFrame, float] :
     df = yf.download(ticker, start="2020-01-01", end="2025-12-31")
     df.columns = df.columns.droplevel(1)
     df.columns.name = None
