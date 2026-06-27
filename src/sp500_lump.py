@@ -3,7 +3,7 @@ from inflation import get_inflation_data
 from etf_data import get_market_data
 from plotting import build_plots
 
-def build_sp_lump():
+def build_sp_lump() -> tuple[pd.DataFrame, float, float]:
     sp_lump, years = get_market_data("VUAA.L")
 
     sp_lump["money_invested_total"] = 7200

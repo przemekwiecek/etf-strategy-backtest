@@ -4,7 +4,7 @@ from inflation import get_inflation_data
 from etf_data import get_market_data
 from plotting import build_plots
 
-def build_sp_dca():
+def build_sp_dca() -> tuple[pd.DataFrame, float, float]:
     sp_dca, years = get_market_data("VUAA.L")
 
     sp_dca["money_invested"] = 100
